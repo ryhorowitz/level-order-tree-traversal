@@ -8,6 +8,18 @@ class Node {
 
 function levelOrderTraversal(root) {
   // type your code here
+  if (root === null) { return [] }
+  const q = [root]
+  const result = []
+
+  while (q.length > 0) {
+    curNode = q.shift()
+    result.push(curNode)
+
+    if (curNode.left) { q.push(curNode.left) }
+    if (curNode.right) { q.push(curNode.right) }
+  }
+  return result.map(n => n.value)
 }
 
 if (require.main === module) {

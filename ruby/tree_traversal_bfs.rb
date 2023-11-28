@@ -9,7 +9,21 @@ class Node
 end
 
 def level_order_traversal(root)
-  # type your code in here
+  result = []
+  q = []
+  return result if root.nil?
+
+  q.push(root)
+
+  while q.size > 0
+    current_node = q.shift
+    result << current_node
+    # puts "node is #{current_node}"
+    q.push << current_node.left unless current_node.left.nil?
+    q.push << current_node.right unless current_node.right.nil?
+  end
+  
+  result.map { |node| node.value } 
 end
 
 if __FILE__ == $PROGRAM_NAME
@@ -34,3 +48,24 @@ end
 
 # Please add your pseudocode to this file
 # And a written explanation of your solution
+=begin
+i: root node
+0: array of node values in breadth first order
+c: breadth first or level traversal
+e: root is empty? return empty []?
+
+
+make result array
+make to_visit array
+
+enqueue root node in to_visit
+
+while to_visit isn't empty
+  current_node = to_visit.dequeue
+  add current_node.value to result array
+
+  does current_node have children?
+    enqueue left and then right values to to_visit
+
+
+=end
